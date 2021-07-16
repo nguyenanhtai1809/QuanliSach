@@ -25,14 +25,14 @@ namespace QuanliSach.Controllers
             if (sach == null)
             {
                 return NotFound();
-            }
+            } 
             return Ok(sach);
         }
         [HttpGet]
         public List<Sach> GetSachLists()
         {
             dbsach1DataContext db = new dbsach1DataContext();
-            return dbsach1.ToList();
+            return db.dbsach1.ToList();
         }
         [HttpPut]
         public bool UpdateSach(int id, string Content, string Title, string AuthorName, decimal Price)
@@ -40,7 +40,7 @@ namespace QuanliSach.Controllers
             try
             {
                 dbsach1DataContext db = new dbsach1DataContext();
-                Sach sach = dbSaches.FirstOrDefault(p => p.Id == id);
+                Sach sach = dbsach1.FirstOrDefault(p => p.Id == id);
                 if (sach == null) return false;
                 sach.AuthorName = AuthorName;
                 sach.Title = Title;
@@ -61,9 +61,9 @@ namespace QuanliSach.Controllers
         {
             dbsach1DataContext db = new dbsach1DataContext();
             //lấy food tồn tại ra
-            Sach sach = db.Saches.FirstOrDefault(x => x.Id == id);
+            Sach sach = db.dbsach1.FirstOrDefault(x => x.Id == id);
             if (sach == null) return false;
-            db.Saches.DeleteOnSubmit(sach);
+            db.dbsach1.DeleteOnSubmit(sach);
             db.SubmitChanges();
             return true;
         }
