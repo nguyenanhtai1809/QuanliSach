@@ -60,7 +60,6 @@ namespace QuanliSach.Controllers
         public bool DeleteSach(int id)
         {
             dbsach1DataContext db = new dbsach1DataContext();
-            //lấy food tồn tại ra
             Sach sach = db.dbsach1.FirstOrDefault(x => x.Id == id);
             if (sach == null) return false;
             db.dbsach1.DeleteOnSubmit(sach);
